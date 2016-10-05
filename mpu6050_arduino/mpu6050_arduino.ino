@@ -710,7 +710,7 @@ void loop()
   //Serial.print(F(","));
   //Serial.print(angle_z, 2);
   //Serial.println(F(""));
-  Serial.println(angle_x, 2);
+  Serial.println(angle_x, 0);
   
   delay(5);
 }
