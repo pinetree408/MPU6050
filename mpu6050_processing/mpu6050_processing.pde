@@ -20,6 +20,14 @@ float   x_fil;  //Filtered data
 float   y_fil;
 float   z_fil;
 
+// unit : m
+// ex) 1m, 5m
+float seasow_height = 1.00;
+float seasow_width = 5.00;
+float impluse_point;
+float delta;
+int delta_interval = 0;
+
 void setup() {
 
     size(700, 300);
@@ -36,6 +44,7 @@ void setup() {
     
     // send single character to trigger DMP init/start
     port.write('r');
+    impluse_point = acos(seasow_height/seasow_width)*180/3.14159;
 
 }
 
@@ -50,6 +59,7 @@ void draw() {
     
     background(0);
     text("recived: " + result, 10, 50);
+    text("impluse: " + delta, 10, 30);
 }
 
 void serialEvent(Serial port) {
@@ -58,6 +68,12 @@ void serialEvent(Serial port) {
   inString = (port.readStringUntil(13));
   
   if (inString != null) {
+      if (abs(abs(float(inString)) - impluse_point) < 2){
+          int caculate = millis();
+          println(caculate, delta_interval);
+          delta = (float(inString) - float(result)) / (caculate - delta_interval);
+          delta_interval = caculate;
+      }  
       result = inString;
   }
 
