@@ -689,8 +689,8 @@ void loop()
   set_last_read_angle_data(t_now, angle_x, angle_y, angle_z, unfiltered_gyro_angle_x, unfiltered_gyro_angle_y, unfiltered_gyro_angle_z);
   
   //프로세싱으로 데이터 보내기
-  //Serial.print(F("DEL:"));              //Delta T
-  //Serial.print(dt, DEC);
+  Serial.print(F("DEL:"));              //Delta T
+  Serial.print(dt, DEC);
   //Serial.print(F("#ACC:"));             //Accelerometer angle
   //Serial.print(accel_angle_x, 2);
   //Serial.print(F(","));
@@ -703,14 +703,13 @@ void loop()
   //Serial.print(unfiltered_gyro_angle_y, 2);
   //Serial.print(F(","));
   //Serial.print(unfiltered_gyro_angle_z, 2);
-  //Serial.print(F("#FIL:"));                  //Filtered angle
-  //Serial.print(angle_x, 2);
+  Serial.print(F("#FIL:"));                  //Filtered angle
+  Serial.print(angle_x, 2);
   //Serial.print(F(","));
   //Serial.print(angle_y, 2);
   //Serial.print(F(","));
   //Serial.print(angle_z, 2);
-  //Serial.println(F(""));
-  Serial.println(angle_x, 0);
+  Serial.println(F(""));
   
   delay(5);
 }
